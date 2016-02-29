@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="css/flipclock.css">
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+		<script src="js/flipclock.js"></script>	
+	</head>
+	<body>
+        <h1>Countdown to FNV</h1>
+		<div class="clock" style="margin:2em;"></div>
+		
+		<script type="text/javascript">
+			var clock;
+
+			$(document).ready(function() {
+
+				// Grab the current date
+				var currentDate = new Date();
+                var currentDay = currentDate.getDay();
+
+                // find days from current date to the next Friday
+                if (currentDay > 5) {
+                    currentDay = 5 - currentDay;
+                }
+                var daysToFriday = 5 - currentDay;
+
+				var fnvDate  = new Date();
+                fnvDate.setDate(fnvDate.getDate() + daysToFriday);
+                fnvDate.setHours(fnvDate.getHours() + 18);
+
+				// Calculate the difference in seconds between the future and current date
+				var diff = fnvDate.getTime() / 1000 - currentDate.getTime() / 1000;
+
+				// Instantiate a coutdown FlipClock
+				clock = $('.clock').FlipClock(diff, {
+					clockFace: 'DailyCounter',
+                    countdown: true
+				});
+			});
+		</script>
+		
+	</body>
+</html>
