@@ -25,9 +25,12 @@
                 }
                 var daysToFriday = 5 - currentDay;
 
-				var fnvDate  = new Date();
+				var fnvDate  = new Date(currentDate);
                 fnvDate.setDate(fnvDate.getDate() + daysToFriday);
-                fnvDate.setHours(fnvDate.getHours() + 18);
+                fnvDate.setHours(18);
+                fnvDate.setMinutes(0);
+                fnvDate.setSeconds(0);
+                fnvDate.setMilliseconds(0);
 
 				// Calculate the difference in seconds between the future and current date
 				var diff = fnvDate.getTime() / 1000 - currentDate.getTime() / 1000;
